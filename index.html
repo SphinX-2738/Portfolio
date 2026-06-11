@@ -346,7 +346,8 @@ nav.scrolled{background:rgba(0,0,0,.6);backdrop-filter:blur(28px);-webkit-backdr
   transition:transform .7s cubic-bezier(0.4,0.2,0.2,1);
   border-radius:14px;
 }
-.cert-inner:hover .cert-flip{
+.cert-inner:hover .cert-flip,
+.cert-inner.flipped .cert-flip{
   transform:rotateY(180deg);
 }
 /* shared face styles */
@@ -421,7 +422,7 @@ nav.scrolled{background:rgba(0,0,0,.6);backdrop-filter:blur(28px);-webkit-backdr
   color:var(--txt3);opacity:.7;pointer-events:none;
   transition:opacity .3s;
 }
-.cert-inner:hover .cert-flip-hint{opacity:0}
+.cert-inner:hover .cert-flip-hint,.cert-inner.flipped .cert-flip-hint{opacity:0}
 .cert-card-top{display:flex;align-items:center;gap:24px;margin-bottom:28px}
 .cert-icon-box{
   width:56px;height:56px;border-radius:12px;flex-shrink:0;
@@ -519,6 +520,11 @@ footer{
   .cert-card{padding:28px 24px}
   .cert-list{grid-template-columns:1fr}
   .proj-metric-lbl{margin-bottom:16px}
+  /* disable hover flip on touch — JS handles click instead */
+  .cert-inner:hover .cert-flip{transform:none}
+  .cert-inner.flipped .cert-flip{transform:rotateY(180deg)}
+  .cert-inner:hover .cert-flip-hint{opacity:.7}
+  .cert-inner.flipped .cert-flip-hint{opacity:0}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
@@ -614,7 +620,6 @@ footer{
         </div>
         <div class="vsc-tabs">
           <div class="vsc-tab active">ankur_sharma.py</div>
-          <div class="vsc-tab">README.md</div>
         </div>
         <div class="vsc-body" id="vsc-body"></div>
       </div>
@@ -906,7 +911,7 @@ footer{
             </div>
           </div>
           <p class="cert-desc">Completed Google Cloud&rsquo;s Generative AI learning path &mdash; covering <strong>foundation models</strong>, prompt design, responsible AI, and <strong>production deployment patterns</strong>. Certified by Google Cloud &amp; Coursera.</p>
-          <span class="cert-flip-hint">hover to flip &rsaquo;</span>
+          <span class="cert-flip-hint">tap to flip &rsaquo;</span>
         </div>
         <!-- BACK -->
         <div class="cert-face cert-back">
@@ -939,7 +944,7 @@ footer{
             </div>
           </div>
           <p class="cert-desc">Validated expertise in <strong>LLMs</strong>, prompt engineering, <strong>RAG pipelines</strong>, fine-tuning foundation models, vector databases, and building robust <strong>enterprise AI agents</strong> on OCI.</p>
-          <span class="cert-flip-hint">hover to flip &rsaquo;</span>
+          <span class="cert-flip-hint">tap to flip &rsaquo;</span>
         </div>
         <!-- BACK -->
         <div class="cert-face cert-back cert-back-oci">
@@ -1420,6 +1425,17 @@ function tw(){
     });
   }
   track.innerHTML=html;
+})();
+
+/* ══ CERT CARD — CLICK TO FLIP ON TOUCH DEVICES ══ */
+(function(){
+  const isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+  if(!isTouch) return; // desktop keeps hover, touch gets click
+  document.querySelectorAll('.cert-inner').forEach(card => {
+    card.addEventListener('click', () => {
+      card.classList.toggle('flipped');
+    });
+  });
 })();
 
 /* ══ NAV SCROLL ══ */
