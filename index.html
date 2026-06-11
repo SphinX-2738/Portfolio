@@ -294,7 +294,7 @@ nav.scrolled{background:rgba(0,0,0,.6);backdrop-filter:blur(28px);-webkit-backdr
 .proj-tag{font-family:var(--font-mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;padding:5px 12px;border-radius:2px;flex-shrink:0}
 .proj-name{font-family:var(--font-display);font-size:clamp(28px,3.5vw,48px);letter-spacing:.01em}
 .proj-metric-mini{font-family:var(--font-display);font-size:28px;flex-shrink:0;margin-left:auto}
-.proj-arrow{font-size:22px;color:var(--txt3);transition:transform .25s var(--ease-out),color .25s;flex-shrink:0;margin-left:24px}
+.proj-arrow{font-size:22px;color:var(--txt3);transition:transform .25s var(--ease-out),color .25s;flex-shrink:0;margin-left:24px;font-family:var(--font-mono);font-style:normal;-webkit-font-smoothing:antialiased;font-variant-emoji:text}
 .proj-body{
   max-height:0;overflow:hidden;
   transition:max-height .5s var(--ease-out);
@@ -304,9 +304,9 @@ nav.scrolled{background:rgba(0,0,0,.6);backdrop-filter:blur(28px);-webkit-backdr
   display:grid;grid-template-columns:1fr 1fr;gap:60px;
   border-top:1px solid rgba(255,255,255,.06);padding-top:40px;
 }
-.proj-item.hovered .proj-arrow{transform:rotate(-45deg);color:#fff}
+.proj-item.hovered:not(.open) .proj-arrow{transform:rotate(-45deg);color:#fff}
 .proj-item.open .proj-arrow{transform:rotate(-45deg) translateX(2px);color:var(--red)}
-.proj-item.open .proj-body{max-height:400px}
+.proj-item.open .proj-body{max-height:600px}
 .proj-desc{font-size:14px;color:rgba(255,255,255,.78);line-height:1.9;font-weight:300;margin-bottom:24px}
 .proj-desc strong{color:#fff;font-weight:500}
 .proj-stack{display:flex;flex-wrap:wrap;gap:7px}
@@ -509,12 +509,16 @@ footer{
   .hero-subtitle-row{flex-direction:column;gap:28px}
   .hero-name{font-size:clamp(64px,16vw,100px)}
   body,html,*{cursor:auto!important}
-  .proj-header{flex-wrap:wrap;gap:12px}
+  .proj-header{flex-wrap:wrap;gap:12px;padding:24px 20px}
   .proj-name{font-size:clamp(22px,5vw,36px)}
-  .proj-body-inner{padding:0 24px 32px;padding-top:28px;grid-template-columns:1fr}
+  .proj-body-inner{padding:0 20px 28px;padding-top:24px;grid-template-columns:1fr;gap:28px}
   .proj-big-metric{font-size:64px}
+  .proj-item.open .proj-body{max-height:900px}
+  .proj-right{display:flex;flex-direction:column;align-items:flex-start}
+  .proj-link{margin-bottom:8px}
   .cert-card{padding:28px 24px}
   .cert-list{grid-template-columns:1fr}
+  .proj-metric-lbl{margin-bottom:16px}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
@@ -696,7 +700,7 @@ footer{
           <span class="proj-name">LLM Evaluation Tester</span>
         </div>
         <span class="proj-metric-mini" style="color:#FF2D55">95%</span>
-        <span class="proj-arrow">&#x2197;</span>
+        <span class="proj-arrow" style="font-variant-emoji:text">&#x2197;&#xFE0E;</span>
       </div>
       <div class="proj-body">
         <div class="proj-body-inner">
@@ -726,7 +730,7 @@ footer{
           <span class="proj-name">Docstract <span style="font-family:var(--font-mono);font-size:12px;color:var(--txt3);font-weight:300;letter-spacing:.08em;text-transform:none">— Extract. Validate. Deliver.</span></span>
         </div>
         <span class="proj-metric-mini" style="color:#BF5AF2">92%</span>
-        <span class="proj-arrow">&#x2197;</span>
+        <span class="proj-arrow" style="font-variant-emoji:text">&#x2197;&#xFE0E;</span>
       </div>
       <div class="proj-body">
         <div class="proj-body-inner">
@@ -757,7 +761,7 @@ footer{
           <span class="proj-name">Synapse <span style="font-family:var(--font-mono);font-size:12px;color:var(--txt3);font-weight:300;letter-spacing:.08em;text-transform:none">— Retrieve. Verify. Answer.</span></span>
         </div>
         <span class="proj-metric-mini" style="color:#0A84FF">10.0</span>
-        <span class="proj-arrow">&#x2197;</span>
+        <span class="proj-arrow" style="font-variant-emoji:text">&#x2197;&#xFE0E;</span>
       </div>
       <div class="proj-body">
         <div class="proj-body-inner">
@@ -795,7 +799,7 @@ footer{
           <span class="proj-name">Sales Performance Analysis</span>
         </div>
         <span class="proj-metric-mini" style="color:#30D158">$10.25M</span>
-        <span class="proj-arrow">&#x2197;</span>
+        <span class="proj-arrow" style="font-variant-emoji:text">&#x2197;&#xFE0E;</span>
       </div>
       <div class="proj-body">
         <div class="proj-body-inner">
@@ -823,7 +827,7 @@ footer{
           <span class="proj-name">Customer Churn Analysis</span>
         </div>
         <span class="proj-metric-mini" style="color:#FFD60A">$1.67M</span>
-        <span class="proj-arrow">&#x2197;</span>
+        <span class="proj-arrow" style="font-variant-emoji:text">&#x2197;&#xFE0E;</span>
       </div>
       <div class="proj-body">
         <div class="proj-body-inner">
@@ -851,7 +855,7 @@ footer{
           <span class="proj-name">HR Employee Attrition Analysis</span>
         </div>
         <span class="proj-metric-mini" style="color:#FF9500">$52.7M</span>
-        <span class="proj-arrow">&#x2197;</span>
+        <span class="proj-arrow" style="font-variant-emoji:text">&#x2197;&#xFE0E;</span>
       </div>
       <div class="proj-body">
         <div class="proj-body-inner">
