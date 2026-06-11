@@ -2,7 +2,8 @@
 
 Personal portfolio website for my Gen AI engineering work.
 
-🔗 **Live:** https://your-vercel-url.vercel.app
+🔗 **Live:** [(https://ankur-portfolio-eta.vercel.app/)]
+
 
 ## Projects featured
 - Synapse — Agentic RAG system (live on Render)
